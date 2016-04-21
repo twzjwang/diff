@@ -1,6 +1,6 @@
 (defparameter data1 nil)
 (defparameter data2 nil)
-(let ( (file1 (open "h.c")) (file2 (open "h.cpp")) )
+(let ( (file1 (open "file1.txt")) (file2 (open "file2.txt")) )
 	(when file1 
       		(loop for line1 = (read-line file1 nil)
             		while line1 do 
@@ -29,21 +29,21 @@
 				(loop for temp3 in data2
 					while temp3 do
 					(if (equal temp2 (car data2)) (return) ())
-					(format t "+~a~%" (car data2))
+					(format t "~c[34m + ~a ~c[0m ~%" #\ESC (car data2) #\ESC )
 					(setf data2 (remove (car data2) data2 :count 1))	
 				)
-				(format t "~a~%" temp2)
+				(format t "   ~a~%" temp2)
 				(setf data2 (remove temp2 data2 :count 1))
 				(setf bool 't)
 				(return)
 			)
 		)			
 	)
-	(cond ( (equal bool 'f)  (format t "-~a~%" temp1) ))	
+	(cond ( (equal bool 'f)  (format t "~c[31m - ~a ~c[0m ~%" #\ESC temp1 #\ESC) ))	
 )
 (loop for temp2 in data2
 	while temp2 do
-	(format t "+~a~%" (car data2))	
+	(format t "~c[34m + ~a ~c[0m ~%" #\ESC (car data2) #\ESC )	
 	(setf data2 (remove (car data2) data2 :count 1))
 )
 
